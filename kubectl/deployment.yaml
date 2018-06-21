@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: oc
+spec:
+  selector:
+    matchLabels:
+      app: oc
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oc
+    spec:
+      containers:
+      - image: pubuduwelagedara/oc:1.0.0
+        name: oc
+        imagePullPolicy: Always
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: deployment
+        ports:
+        - containerPort: 8080
+          name: oc
